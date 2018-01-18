@@ -1,0 +1,44 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<h1>Events</h1>
+
+<h2>events</h2>
+
+<ul>
+	# for(event : response.embedded.events)
+		<li>
+			<h3>#(event.id)</h3>
+			<ul>
+				<li>topic: #(event.topic)</li>
+				<li>resourceId: #(event.resourceId)</li>
+				<li>created: #(event.created)</li>
+				<li>
+					<h4>links: </h4>
+					<ul>
+						# for(link : event._links)
+							<li># (link.key) - #(link.value.toString())</li>	
+						# end
+					</ul>
+				</li>
+			</ul>
+		</li>
+	# end
+</ul>
+
+<h2>Links</h2>
+<p>#(response.links.toString())</p>
+<ul>
+	# for(link : response.links)
+		<li># (link.key) - #(link.value.toString())</li>	
+	# end
+</ul>
+<p>
+	return <a href="/">Root</a>
+</p>
+<hr/>
+<p># (response.toString())</p>
+</body>
+</html>

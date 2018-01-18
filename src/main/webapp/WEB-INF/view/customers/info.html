@@ -1,0 +1,68 @@
+<html>
+<body>
+<h1>Customer Info</h1>
+# if(err != null)
+	<h2>Error</h2>
+	<p># (err)</p>
+# end
+<p># if(customer == null) 添加# else 查看#end 客户信息</p>
+	# if (customer != null)
+	<p># (customer.toString() )</p>
+	<form method="post" action="/customers/update/#(customer.id)">
+	<ul>
+		<li>ID:#(customer.id)</li>
+		<li>Name: # (customer.firstName) ・ # (customer.lastName)</li>
+		<li>email: # (customer.email) </li>
+		<li>status: # (customer.status)</li>
+		<li>type:  <select name="type" >
+					<option value="unverified" # (customer.type == 'unverified' ? 'selected':'') >unverified</option>		
+					<option value="personal" # (customer.type == 'personal' ? 'selected':'') >personal</option>		
+					<option value="receive-only" # (customer.type == 'receive-only' ? 'selected':'') =>receive-only</option>		
+					</select>
+		</li>
+		<li>phone: <input type="text" name="phone"   size=50 /></li>
+		<li>ipAddress: <input type="text" name="ipAddress"   size=50 /></li>
+		<li>ssn: <input type="text" name="ssn"   size=50 /></li>
+		<li>dateOfBirth: <input type="text" name="dateOfBirth"   size=50 /></li>
+		<li>city: <input type="text" name="city" value="# (customer.city)" size=50 /></li>
+		<li>state: <input type="text" name="state" value="# (customer.state)" size=50 /></li>
+		<li>postalCode: <input type="text" name="postalCode" value="# (customer.postalCode)" size=50 /></li>
+		<li>businessName: <input type="text" name="businessName" value="# (customer.businessName)" size=50 /></li>
+		<li>doingBusinessAs: <input type="text" name="doingBusinessAs" value="# (customer.doingBusinessAs)" size=50 /></li>
+		<li>address1: <input type="text" name="address1" value="# (customer.address1)" size=50 /></li>
+		<li>address2: <input type="text" name="address2" value="# (customer.address2)" size=50 /></li>
+		<li>created: # (customer.created)</li>
+		<li>
+			<button type="submit">提交</button>
+		</li>
+		<li>
+			<h3>links</h3>
+			# for(link : customer.links)
+				<li><a href="/customers/# (link.key.replace('-',''))/# (customer.id)">#(link.key)</a> - #(link.value.toString()) </li>
+			# end
+		</li>
+	</ul>
+	</form>
+	# else 
+<form method="post" action="/customers/add">
+	<ul>
+		<li>
+			firstName: <input type="text" name="firstName"  />
+		</li>
+		<li>
+			lastName: <input type="text" name="lastName"  />
+		</li>
+		<li>
+			email: <input type="text" name="email"  />
+		</li>
+		<li>
+			<button type="submit">提交</button>
+		</li>
+	</ul>
+</form>
+	# end
+<p><a href="javascript:history.go(-1);">返回上一页</a></p>
+<p>return <a href="/customers">Customers</a></p>
+<p>return <a href="/">Root</a></p>
+</body>
+</html>

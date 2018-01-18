@@ -1,0 +1,21 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<h1>Transfers</h1>
+<p>创建一个转账交易</p>
+<form action="create" method="post">
+	<ul>
+		<li>转出：<input type="text" name="source" /></li>
+		<li>转入：<input type="text" name="destination" /></li>
+		<li>金额：<input type="text" name="amount" /></li>
+		<li><button type="submit">提交</button> </li>
+	</ul>
+</form>
+<h2>result:</h2>
+# if(null != result)
+<p># (result.toString())</p>
+# end
+</body>
+</html>

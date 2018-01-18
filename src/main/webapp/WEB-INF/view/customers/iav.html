@@ -1,0 +1,48 @@
+<html>
+<head>
+<script src="https://cdn.dwolla.com/1/dwolla.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<h1>Customers IAV</h1>
+<p>Instant account verification </p>
+<p>速成户头验证 </p>
+<p>
+	IAV	是一个需要服务端和客户端交互简单并且安全的流程。服务端需要请求一个single-use token去代表客户添加或验证他们的银行卡。客户端在页面需要引入dwolla.js包进行IAV流程。
+</p>
+<h2>Config</h2>
+<p>id:#(id)</p>
+<p>configure:#(configure)</p>
+<h2>Response</h2>
+<p># (iavToken.toString())</p>
+<h2>IAV Flow</h2>
+<div id="controls">
+  <input type="button" id="start" value="Start">
+</div>
+<div id="iavContainer"></div>
+<script type="text/javascript">
+  $('#start').click(function() {
+	  var iavToken = '#(iavToken.token)';
+	  dwolla.configure('#(configure)');
+	  dwolla.iav.start(iavToken, {
+	    container: 'iavContainer',
+	    stylesheets: [
+	      'http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext'
+	    ],
+	    microDeposits: false,
+	    fallbackToMicroDeposits: true
+	  }, function(err, res) {
+	     console.log('Error: ' + JSON.stringify(err) + ' -- Response: ' + JSON.stringify(res));
+	  });
+	});
+</script>
+<footer>
+<p>
+	return <a href="/customers">Customers</a>
+</p>
+<p>
+	return <a href="/">Root</a>
+</p>
+</footer>
+</body>
+</html>

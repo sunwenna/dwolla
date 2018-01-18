@@ -1,0 +1,40 @@
+<html>
+<body>
+<h1>Customer Funding-sources</h1>
+<p># (description)</p>
+<p># (response)</p>
+<h2>Functions</h2>
+<ul>
+	<li><a href="/customers/fundingsources/add/#(id)">Create a funding source 添加一个资金来源</a></li>
+</ul>
+<h2>embedded</h2>
+<ul>
+	# if(null != data)
+		# for(source : data['funding-sources'])
+			<li>
+				<h3># (source.id)</h3>
+				<p>status: # (source.status)</p>
+				<p>type: # (source.type)</p>
+				<p>name: # (source.name)</p>
+				<p>created: # (source.created)</p>
+				<p>removed: # (source.removed)</p>
+				<p>channels: # (source.channels)</p>
+				<ul>
+					# for(link : source._links)
+						<li><a href="/customers/funding-sources/#(link.key.replace('-',''))/# (source.id)">#(link.key)</a>  - #(link.value)</li>
+					# end
+				</ul>
+			</li>
+		# end	
+	# end
+</ul>
+<footer>
+<p>
+	return <a href="/customers">Customers</a>
+</p>
+<p>
+	return <a href="/">Root</a>
+</p>
+</footer>
+</body>
+</html>

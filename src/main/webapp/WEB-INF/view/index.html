@@ -1,0 +1,17 @@
+<html>
+<body>
+<h1>Root</h1>
+<p># (description)</p>
+<p># (response)</p>
+<h2>Links </h2>
+<ul>
+	# if(null != catalogResponse)
+		# for(link : catalogResponse.links)
+		<li><a href="/#(link.key.replace('-',''))?link=# (java.net.URLEncoder::encode(link.value.href,"utf-8"))">#(link.key)</a>  - #(link.value)</li>
+		# end	
+	# end
+</ul>
+<h2>Guides</h2>
+<p><a href="/guides">新手指引</a></p>
+</body>
+</html>

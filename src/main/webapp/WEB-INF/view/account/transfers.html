@@ -1,0 +1,44 @@
+<html>
+<body>
+<h1>Account Transfers</h1>
+<p>账户交易记录</p>
+<p># (response)</p>
+<h2></h2>
+<ul>
+	<li><a href="/transfers/">创建交易</a></li>
+</ul>
+<h2>交易列表</h2>
+<ul>
+	# for (transfer : transferList.embedded.transfers)
+		<li>
+			<h3># (transfer.id)</h3>
+			<p>status: # (transfer.status)</p>
+			<p>amount: # (transfer.amount.currency) # (transfer.amount.value)</p>
+			<p>create: # (transfer.created)
+			<p>individualAchId: # (transfer.individualAchId)
+			<ul>
+				# for(link : transfer._links)
+				 	<li><a href="/">#(link.key) - #(link.value.href)</a> </li>
+				# end
+			</ul>
+		</li>
+	# end
+</ul>
+<ul class="page">
+	# for (link : transferList.links)
+		<li> #(link.key) - #(link.value.href) </li>
+	# end 
+	总数:# (transferList.total)
+	LocalHeader: # (transferList.locationHeader);
+</ul>
+<style type="css/text">
+.page {
+	list-style-type:none;	
+}
+</style>
+<footer>
+<p>return <a href="/account">Account</a></p>
+<p>return <a href="/">Root</a></p>
+</footer>
+</body>
+</html>

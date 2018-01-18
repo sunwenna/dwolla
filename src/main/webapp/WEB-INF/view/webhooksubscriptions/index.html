@@ -1,0 +1,47 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<h1>Webhook-subscriptions</h1>
+
+<h2><a href="/webhooksubscriptions/info">添加订阅</a></h2>
+
+# if (null != response.embedded)
+<h2>subscriptions</h2>
+<ul>
+	# for(subscription : response.embedded["webhook-subscriptions"])
+		<li>
+			<h3># (subscription.id)</h3>
+			<ul>
+				<li>url: # (subscription.url)</li>
+				<li>paused: # (subscription.paused)</li>
+				<li>created: # (subscription.created)</li>
+				<li>
+					<h4>links: </h4>
+					<ul>
+						# for(link : subscription._links)
+							<li># (link.key) - #(link.value.toString())</li>	
+						# end
+					</ul>
+				</li>
+			</ul>
+	# end
+</ul>		
+# end
+
+
+<h2>Links</h2>
+<p>#(response.links.toString())</p>
+<ul>
+	# for(link : response.links)
+		<li># (link.key) - #(link.value.toString())</li>	
+	# end
+</ul>
+<p>
+	return <a href="/">Root</a>
+</p>
+<hr/>
+<p># (response.toString())</p>
+</body>
+</html>

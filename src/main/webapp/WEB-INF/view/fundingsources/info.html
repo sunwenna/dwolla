@@ -1,0 +1,41 @@
+<html>
+<body>
+<h1>Funding Sources</h1>
+<p># (response)</p>
+# if (msg != null)
+<p># (msg)</p>
+# end
+<p># if(fundingSource == null) 添加# else 查看#end 资金来源</p>
+
+	# if (fundingSource != null)
+	<ul>
+	</ul>
+	# else 
+<form method="post" action="/fundingsources/add">
+	<ul>
+		<li>
+			accountNumber(账户号): <input type="text" name="accountNumber"  />
+		</li>
+		<li>
+			routingNumber(路由号): <input type="text" name="routingNumber"  />
+		</li>
+		<li>
+			bankAccountType(账户类型): <select name="bankAccountType">
+				<option value="checking">checking</option>
+				<option value="savings">savings</option>
+			</select>
+		</li>
+		<li>
+			name(资金来源昵称): <input type="text" name="name" />
+		</li>
+		<li>
+			<button type="submit">提交</button>
+		</li>
+	</ul>
+</form>
+	# end
+<p><a href="javascript:history.go(-1);">返回上一页</a></p>
+<p>return <a href="/fundingsources">FundingSources</a></p>
+<p>return <a href="/">Root</a></p>
+</body>
+</html>

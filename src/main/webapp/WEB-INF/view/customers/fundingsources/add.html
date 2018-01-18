@@ -1,0 +1,53 @@
+<html>
+<body>
+<h1>Funding-sources</h1>
+<p>添加一个客户资金来源</p>
+# if (fundingSource == null)
+<form method="post" action="/customers/fundingsources/save/#(id)">
+	<ul>
+		<li>
+			Customer Id : # (id)
+		</li>
+		<li>
+			routingNumber(路由号): <input type="text" name="routingNumber"  />
+		</li>
+		<li>
+			accountNumber(账户号): <input type="text" name="accountNumber"  />
+		</li>
+		<li>
+			bankAccountType(账户类型): <select name="bankAccountType"  >
+				<option value="checking"  >checking</option>
+				<option value="savings" >savings</option>
+			</select>
+		</li>
+		<li>
+			name(资金来源昵称): <input type="text" name="name" />
+		</li>
+		<li>
+			<button type="submit">提交</button>
+		</li>
+	</ul>
+</form>
+# end 
+# if(msg != null)
+<h2>msg</h2>
+<p># (msg)</p>
+# end
+
+
+<footer>
+<p>
+	return <a href="/customers/fundingsources/#(id)">Funding sources</a>
+</p>
+<p>
+	return <a href="/customers/#(id)">Self</a>
+</p>
+<p>
+	return <a href="/customers">Customers</a>
+</p>
+<p>
+	return <a href="/">Root</a>
+</p>
+</footer>
+</body>
+</html>

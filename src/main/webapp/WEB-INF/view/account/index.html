@@ -1,0 +1,24 @@
+<html>
+<body>
+<h1>Account</h1>
+<p># (description)</p>
+<p># (response)</p>
+# if(null != accountInfo)
+<h2>Info</h2>
+<p>id: #(accountInfo.id)</p>
+<p>name: #(accountInfo.name)</p>
+<p>timezoneOffset: #(accountInfo.timezoneOffset)</p>
+# end
+<h2>Links </h2>
+<ul>
+	# if(null != accountInfo)
+		# for(link : accountInfo.links)
+		<li><a href="/account/# (link.key.replace('-',''))?link=# (java.net.URLEncoder::encode(link.value.href,"utf-8"))">#(link.key)</a>  - #(link.value)</li>
+		# end	
+	# end
+</ul>
+<footer>
+return <a href="/">Root</a>
+</footer>
+</body>
+</html>

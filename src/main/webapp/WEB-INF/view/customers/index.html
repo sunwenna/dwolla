@@ -1,0 +1,41 @@
+<html>
+<body>
+<h1>Customers</h1>
+<p>客户管理接口</p>
+<ul>
+	<li><a href="/customers/info">创建客户</a></li>
+</ul>
+<h2>客户列表</h2>
+<p># (customerList.toString())</p>
+<ul>
+	# for (customer : customerList.embedded.customers)
+		<li>
+			<h3># (customer.id)</h3>
+			<p># (customer.firstName) #(customer.lastName)</p>
+			<p># (customer.email)</p>
+			<p>status : # (customer.status)</p>
+			<p>create : # (customer.created)</p>
+			<p><a href="/customers/iav/#(customer.id)">IAV</a></p>
+			<ul>
+				# for (link : customer._links)
+					<li><a href="/customers/# (link.key.replace('-',''))/# (customer.id)">#(link.key)</a> - #(link.value.toString()) </li>
+				# end 
+			</ul>
+		</li>
+	# end 
+</ul>
+<ul class="page">
+	# for (link : customerList.links)
+		<li> #(link.key) - #(link.value.href) </li>
+	# end 
+	总数:# (customerList.total)
+	LocalHeader: # (customerList.locationHeader);
+</ul>
+return <a href="/">Root</a>
+<style type="css/text">
+.page {
+	list-style-type:none;	
+}
+</style>
+</body>
+</html>

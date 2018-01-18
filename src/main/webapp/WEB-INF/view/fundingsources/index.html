@@ -1,0 +1,50 @@
+<html>
+<body>
+<h1>Funding-sources</h1>
+<p># (description)</p>
+<p># (response)</p>
+<h2>Current Link</h2>
+<p># (link)<p>
+<h2>Functions</h2>
+<ul>
+	<li><a href="/fundingsources/info">Create a funding source 绑定一个银行账号</a></li>
+</ul>
+<h2>embedded</h2>
+<ul>
+	# if(null != data)
+		# for(source : data['funding-sources'])
+			<li>
+				<h3># (source.id)</h3>
+				<p>status: # (source.status)</p>
+				<p>type: # (source.type)</p>
+				<p>name: # (source.name)</p>
+				<p>created: # (source.created)</p>
+				<p>removed: # (source.removed)</p>
+				<p>channels: # (source.channels)</p>
+				<ul>
+					# for(link : source._links)
+						<li><a href="/account/funding-sources/#(link.key.replace('-',''))/# (source.id)">#(link.key)</a>  - #(link.value)</li>
+					# end
+				</ul>
+			</li>
+		# end	
+	# end
+</ul>
+<h2>Links</h2>
+<ul>
+	# if(null != links)
+		# for(link : links)
+		<li><a href="/account/#(link.key.replace('-',''))?link=# (java.net.URLEncoder::encode(link.value.href,"utf-8"))">#(link.key)</a>  - #(link.value)</li>
+		# end	
+	# end
+</ul>
+<footer>
+<p>
+	return <a href="/account">Account</a>
+</p>
+<p>
+	return <a href="/">Root</a>
+</p>
+</footer>
+</body>
+</html>
